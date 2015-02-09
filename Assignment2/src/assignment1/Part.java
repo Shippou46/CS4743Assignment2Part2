@@ -7,6 +7,7 @@ public class Part {
 	private String partName;
 	private String vendor;
 	private int quantity;
+	private static String qUnit = "Unknown";
 	
 	private ArrayList<PartObserver> observers;
 	
@@ -27,6 +28,14 @@ public class Part {
 		quantity = q;
 		
 		observers = new ArrayList<PartObserver>();
+	}
+
+	public static String getQuantityUnit(){
+		return qUnit;
+	}
+
+	public static void setQuantityUnit(String unit){
+		qUnit = unit;
 	}
 
 	public String getPartNumber() {
@@ -69,11 +78,12 @@ public class Part {
 		observers.add(o);
 	}
 	
-	public void setFields(String pNum, String pName, String v, int q) {
+	public void setFields(String pNum, String pName, String v, int q, String unit) {
 		setPartNumber(pNum);
 		setPartName(pName);
 		setVendor(v);
 		setQuantity(q);
+		setQuantityUnit(unit);
 		updateObservers();
 	}
 	

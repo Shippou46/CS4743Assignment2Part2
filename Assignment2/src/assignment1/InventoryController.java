@@ -1,7 +1,8 @@
 package assignment1;
 
-public class InventoryController {
+public class InventoryController implements ActionListener{
 	private Inventory inv;
+	private String unit;
 	
 	public InventoryController(Inventory i) {
 		inv = i;
@@ -38,7 +39,7 @@ public class InventoryController {
 					view.showError("Part Name already exists!");
 					return null;
 				}
-				p.setFields(pNum, pName, v, q);
+				p.setFields(pNum, pName, v, q, unit);
 				inv.updateObservers();
 				return p;
 			} catch(IllegalArgumentException e) {
@@ -47,4 +48,16 @@ public class InventoryController {
 		}
 		return null;
 	}
+
+		@Override
+	public void actionPerformed(ActionEvent e) {
+		String command = e.getActionCommand();
+		if(command.equals("Linear Feet")){
+			unit = command;
+		}
+		if(command.equals("Pieces")){
+			unit = command;
+		}
+	}
+
 }
