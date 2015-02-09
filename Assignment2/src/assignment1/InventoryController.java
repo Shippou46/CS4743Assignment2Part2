@@ -23,12 +23,12 @@ public class InventoryController {
 		return inv.getNumParts();
 	}
 	
-	public Part addPart(PartView view, Part p, String pNum, String pName, String v, int q) {
+	public Part addPart(PartView view, Part p, String pNum, String pName, String v, int q, int id) {
 		//if p is null then create a new Part
 		//but first validate pName does not already exist
 		if(p == null) {
 			try {
-				return inv.addPart(p, pNum, pName, v, q);
+				return inv.addPart(p, pNum, pName, v, q, id);
 			} catch(IllegalArgumentException e) {
 				view.showError(e.getMessage());
 			}
@@ -38,7 +38,7 @@ public class InventoryController {
 					view.showError("Part Name already exists!");
 					return null;
 				}
-				p.setFields(pNum, pName, v, q);
+				p.setFields(pNum, pName, v, q, id);
 				inv.updateObservers();
 				return p;
 			} catch(IllegalArgumentException e) {
