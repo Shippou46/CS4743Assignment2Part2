@@ -24,6 +24,7 @@ public class PartView extends JFrame implements PartObserver {
 	private JTextField tfQty;
 	private JTextField tfID;
 	private JTextField tfExNum;	
+	private JTextField tfLoc;
 	
 	private Part part;
 	private InventoryController invC;
@@ -68,6 +69,10 @@ public class PartView extends JFrame implements PartObserver {
 		panel.add(new JLanel("ExPart #"));
 		tfExNum = new JTextField();
 		panel.add(tfExNum);
+		
+		panel.add(new JLabel("Location"));
+		tfLoc = new JTextField();
+		panel.add(tfLoc);
 
 		this.add(panel, BorderLayout.CENTER);
 		
@@ -83,7 +88,7 @@ public class PartView extends JFrame implements PartObserver {
 					PartView.this.showError("Invalid Quantity!");
 					return;
 				}
-				Part p = invC.addPart(PartView.this, part, tfPartNum.getText(), tfPartName.getText(), tfVendor.getText(), Integer.parseInt(tfQty.getText().trim()), Part.getIDNumber(), tfExNum.getText());
+				Part p = invC.addPart(PartView.this, part, tfPartNum.getText(), tfPartName.getText(), tfVendor.getText(), Integer.parseInt(tfQty.getText().trim()), tfID.getText(), tfLoc.getText());
 				if(p != null) {
 					if(part == null) {
 						part = p;
@@ -104,8 +109,9 @@ public class PartView extends JFrame implements PartObserver {
 			tfPartName.setText(part.getPartName());
 			tfVendor.setText(part.getVendor());
 			tfID.setText(Integer.toString(Part.getIDNumber()));
-			tfQty.setText(Integer.toString(part.getQuantity()) + " " + Part.getQuantityUnit());i
 			tfExNum.setText(part.getExPartNumber());
+			tfQty.setText(Integer.toString(part.getQuantity()) + " " + Part.getQuantityUnit());
+			tfLoc.setText(part.getLocation());
 			this.setTitle("Editing " + p.getPartName());
 		} else
 			this.setTitle("Adding new part");
@@ -123,6 +129,7 @@ public class PartView extends JFrame implements PartObserver {
 			tfVendor.setText(part.getVendor());
 			tfQty.setText(Integer.toString(part.getQuantity()) + " " + Part.getQuantityUnit());
 			tfExNum.setText(part.getExPartNumber());
+			tfLoc.setText(part.getLocation());
 			this.setTitle("Editing " + part.getPartName());
 		}
 	}
