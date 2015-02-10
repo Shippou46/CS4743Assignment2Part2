@@ -8,6 +8,7 @@ public class Part {
 	private String partName;
 	private String vendor;
         private static int idNumber;
+	private String exPartNum;
 	private int quantity;
 
 	static Random randomNumber = new Random();
@@ -15,24 +16,35 @@ public class Part {
 	
 	private ArrayList<PartObserver> observers;
 	
-	public Part(String pNum, String pName, int q, int id) {
-		this(pNum, pName, "", q, id);
+	public Part(String pNum, String pName, int q, int id, String ex) {
+		this(pNum, pName, "", q, id, ex);
 	}
 	
-	public Part(String pNum, String pName, String v, int q) {
+	public Part(String pNum, String pName, String v, int q, String ex) {
 		if(pNum == null || pNum.length() < 1)
 			throw new IllegalArgumentException("Part # cannot be blank");
 		if(pName == null || pName.length() < 1)
 			throw new IllegalArgumentException("Part Name cannot be blank");
 		if(q < 1)
 			throw new IllegalArgumentException("Quantity cannot be < 1");
+		if(ex == null || ex.lenth() > 50){
+			throw new IllegalArgumentException("External Part Number too long");
 		partNumber = pNum;
 		partName = pName;
 		vendor = v;
 		quantity = q;
 		idNumber = 0;
+		exPartNum = ex;
 		
 		observers = new ArrayList<PartObserver>();
+	}
+
+	public String getExPartNumber(){
+		return exPartNum;
+	}
+
+	public void setExPartNumber(String exPartNum){
+		this.exPartNum = exPartNum;
 	}
 
 	public static int getIDNumber(){

@@ -11,9 +11,9 @@ public class InventoryMain {
 		Inventory inv = new Inventory();
 		
 		//populate with a few test Parts
-		inv.addPart(null, "01011", "1/2\" Bolt", "Sears", 100, 1);
-		inv.addPart(null, "X3599", "1\" Laminate Edging (Hot Pink)", "Plastics R Us", 50, 2);
-		inv.addPart(null, "02949", "1/4\" Plywood 10x10", "", 10, 3);
+		inv.addPart(null, "01011", "1/2\" Bolt", "Sears", 100, 1, "1");
+		inv.addPart(null, "X3599", "1\" Laminate Edging (Hot Pink)", "Plastics R Us", 50, 2, "2");
+		inv.addPart(null, "02949", "1/4\" Plywood 10x10", "", 10, 3, "3");
 
 		//controller
 		InventoryController invC = new InventoryController(inv);

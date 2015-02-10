@@ -33,10 +33,10 @@ public class Inventory {
 		return false;
 	}
 	
-	public Part addPart(Part part, String pNum, String pName, String v, int q, int id) throws IllegalArgumentException {
+	public Part addPart(Part part, String pNum, String pName, String v, int q, int id, String ex) throws IllegalArgumentException {
 		if(partNameExists(pName, part))
 			throw new IllegalArgumentException("Part Name already exists!");
-		Part p = new Part(pNum, pName, v, q, id);
+		Part p = new Part(pNum, pName, v, q, id, ex);
 		parts.add(p);
 		updateObservers();
 		return p;

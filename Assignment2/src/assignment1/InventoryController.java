@@ -24,12 +24,12 @@ public class InventoryController implements ActionListener{
 		return inv.getNumParts();
 	}
 	
-	public Part addPart(PartView view, Part p, String pNum, String pName, String v, int q, int id) {
+	public Part addPart(PartView view, Part p, String pNum, String pName, String v, int q, int id, String ex) {
 		//if p is null then create a new Part
 		//but first validate pName does not already exist
 		if(p == null) {
 			try {
-				return inv.addPart(p, pNum, pName, v, q, id);
+				return inv.addPart(p, pNum, pName, v, q, id, ex);
 			} catch(IllegalArgumentException e) {
 				view.showError(e.getMessage());
 			}
