@@ -1,13 +1,18 @@
 package assignment1;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.AbstractButton;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -21,11 +26,19 @@ public class PartView extends JFrame implements PartObserver {
 	
 	private Part part;
 	private InventoryController invC;
-	
+	private JMenu uMenu;	
+
 	public PartView(InventoryController i, Part p) {
 		part = p;
 		invC = i;
 		
+
+		JMenuItem LinearFeet = new JMenuItem("Linear Feet");
+		JMenuItem Pieces = new JMenuItem("Pieces");
+
+		uMenu.add(LinearFeet);
+		uMenu.add(Pieces);
+
 		this.setLayout(new BorderLayout());
 		
 		JPanel panel = new JPanel();
@@ -85,8 +98,8 @@ public class PartView extends JFrame implements PartObserver {
 			tfPartNum.setText(part.getPartNumber());
 			tfPartName.setText(part.getPartName());
 			tfVendor.setText(part.getVendor());
-			tfQty.setText(Integer.toString(part.getQuantity()));
 			tfID.setText(Integer.toString(Part.getIDNumber()));
+			tfQty.setText(Integer.toString(part.getQuantity()) + " " + Part.getQuantityUnit());
 			this.setTitle("Editing " + p.getPartName());
 		} else
 			this.setTitle("Adding new part");
@@ -102,8 +115,8 @@ public class PartView extends JFrame implements PartObserver {
 			tfPartNum.setText(part.getPartNumber());
 			tfPartName.setText(part.getPartName());
 			tfVendor.setText(part.getVendor());
-			tfQty.setText(Integer.toString(part.getQuantity()));
-			tfID.setText(Integer.toString(Part.getIDNumber()));
+			tfQty.setText(Integer.toString(part.getQuantity()) + " " + Part.getQuantityUnit());
+			tfQty.setText(Integer.toString(part.getQuantity()) + " " + Part.getQuantityUnit());
 			this.setTitle("Editing " + part.getPartName());
 		}
 	}
