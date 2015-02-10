@@ -9,17 +9,18 @@ public class Part {
 	private String vendor;
         private static int idNumber;
 	private int quantity;
+	private String location = "Unknown";
 
 	static Random randomNumber = new Random();
 	private static String qUnit = "Unknown";
 	
 	private ArrayList<PartObserver> observers;
 	
-	public Part(String pNum, String pName, int q, int id) {
-		this(pNum, pName, "", q, id);
+	public Part(String pNum, String pName, int q, int id, String loc) {
+		this(pNum, pName, "", q, id, loc);
 	}
 	
-	public Part(String pNum, String pName, String v, int q) {
+	public Part(String pNum, String pName, String v, int q, String loc) {
 		if(pNum == null || pNum.length() < 1)
 			throw new IllegalArgumentException("Part # cannot be blank");
 		if(pName == null || pName.length() < 1)
@@ -30,9 +31,18 @@ public class Part {
 		partName = pName;
 		vendor = v;
 		quantity = q;
+		location = loc;
 		idNumber = 0;
 		
 		observers = new ArrayList<PartObserver>();
+	}
+
+	public String getLocation(){
+		return location;
+	}
+
+	public void setLocation(String location){
+		this.location = location;
 	}
 
 	public static int getIDNumber(){
@@ -91,13 +101,14 @@ public class Part {
 		observers.add(o);
 	}
 	
-	public void setFields(String pNum, String pName, String v, int q, String unit) {
+	public void setFields(String pNum, String pName, String v, int q, String unit, String loc) {
 		setPartNumber(pNum);
 		setPartName(pName);
 		setVendor(v);
 		setQuantity(q);
 		setIDNumber(id);
 		setQuantityUnit(unit);
+		setLocation(loc);
 		updateObservers();
 	}
 	
